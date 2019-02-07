@@ -112,6 +112,7 @@ export default {
           this.loader
           this.showToastSuccess = true
           this.loading = !this.loading
+          this.$router.push({ name: 'about' })
         },
         error => {
           console.log(error)
@@ -120,29 +121,6 @@ export default {
         }
       )
     }
-    //   this.axios
-    //     .post({
-    //       mobilephone: this.$v.telefono,
-    //       octoplus_token: 'f550a68b-21ff-4b33-aa04-bff68023acca'
-    //     })
-    //     .then(response => console.log(response))
-    //     .catch(e => {
-    //       console.error(e)
-    //     })
-    // }
-    // postNow() {
-    //   axios
-    //     .post('https://octoplus.app/api/v1/customer', {
-    //       headers: {
-    //         'Content-type': 'application/json'
-    //       },
-    //       body: {
-    //         mobilephone: this.$v.telefono,
-    //         octoplus_token: 'f550a68b-21ff-4b33-aa04-bff68023acca'
-    //       }
-    //     })
-    //     .then(response => console.log(response))
-    // }
   }
 }
 </script>
