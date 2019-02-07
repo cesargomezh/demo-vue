@@ -17,7 +17,7 @@
                     prepend-icon="phone"
                     name="telefono"
                     label="Telefono"
-                    type="number"
+                    type="text"
                     required
                     @input="$v.telefono.$touch()"
                     @blur="$v.telefono.$touch()"
@@ -26,7 +26,9 @@
               </v-card-text>
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn color="primary">Ver Catalogo</v-btn>
+                <v-btn color="primary" :disabled="!telefono"
+                  >Ver Catalogo</v-btn
+                >
               </v-card-actions>
             </v-card>
           </v-flex>
@@ -66,7 +68,7 @@ export default {
       required
     }
   },
-  compute: {
+  computed: {
     nameErrors() {
       const errors = []
       if (!this.$v.telefono.$dirty) return errors
