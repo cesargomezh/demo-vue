@@ -1,5 +1,8 @@
 <template>
   <v-layout justify-center>
+    <vue-element-loading :active="isLoading" :is-full-screen="true">
+      <img src="https://mitienda.moda/img/loader.126f8cbb.gif" />
+    </vue-element-loading>
     <v-flex xs12 sm12>
       <v-card>
         <v-container fluid grid-list-lg>
@@ -31,6 +34,8 @@
 
 <script>
 import axios from 'axios'
+import VueElementLoading from 'vue-element-loading'
+
 export default {
   data: () => ({
     collection: [
@@ -74,10 +79,13 @@ export default {
         src: 'https://mitienda.moda/img/categories/83478380662.jpg',
         id: '83478380662'
       }
-    ]
+    ],
+    isLoading: false
   }),
+  components: { VueElementLoading },
   methods: {
     getCollection(id) {
+      this.isLoading = !this.isLoading
       axios({
         method: 'POST',
         url: 'https://octoplus.app/api/v1/shopity/collection',
@@ -89,11 +97,11 @@ export default {
       }).then(
         result => {
           console.log(result)
+          this.isLoading = !this.isLoading
         },
         error => {
           console.log(error)
-          this.showToast = true
-          this.loading = !this.loading
+          this.isLoading = !this.isLoading
         }
       )
     }
