@@ -112,7 +112,7 @@ export default {
           this.loader
           this.showToastSuccess = true
           this.loading = !this.loading
-          this.$router.push({ name: 'about' })
+          this.$router.push({ name: 'categorias' })
         },
         error => {
           console.log(error)

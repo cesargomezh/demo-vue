@@ -19,8 +19,11 @@ export default {
   name: 'App',
   components: {},
   data() {
-    return {
-      //
+    return {}
+  },
+  computed: {
+    dataCollection() {
+      return this.$store.state.collections
     }
   }
 }

@@ -35,6 +35,7 @@
 <script>
 import axios from 'axios'
 import VueElementLoading from 'vue-element-loading'
+import { mapState, mapMutations } from 'vuex'
 
 export default {
   data: () => ({
@@ -84,6 +85,7 @@ export default {
   }),
   components: { VueElementLoading },
   methods: {
+    ...mapMutations(['setCollection']),
     getCollection(id) {
       this.isLoading = !this.isLoading
       axios({
@@ -96,8 +98,10 @@ export default {
         headers: { 'content-type': 'application/json' }
       }).then(
         result => {
-          console.log(result)
           this.isLoading = !this.isLoading
+          console.log(result)
+          this.setCollection(result.data.catalogItems)
+          this.$router.push({ name: 'catalogo' })
         },
         error => {
           console.log(error)
@@ -105,6 +109,9 @@ export default {
         }
       )
     }
+  },
+  computed: {
+    ...mapState(['collections'])
   }
 }
 </script>
